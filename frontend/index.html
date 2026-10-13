@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus Navigation System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  
+  <!-- Main Application CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Application Shell -->
+  <div class="app-container">
+    
+    <!-- Top Bar -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <div class="brand-text">
+          <h1>UniNav<span class="brand-badge">Campus 360</span></h1>
+          <p>Apex University Smart Wayfinding & Indoor Guide</p>
+        </div>
+      </div>
+
+      <!-- Quick Global Search Bar -->
+      <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="globalSearchInput" placeholder="Search classrooms, labs, libraries, cafes, offices..." autocomplete="off">
+        <button id="clearGlobalSearch" class="btn-icon" title="Clear"><i class="fa-solid fa-xmark"></i></button>
+        <div id="searchResultsDropdown" class="search-dropdown hidden"></div>
+      </div>
+
+      <!-- Header Action Controls -->
+      <div class="nav-actions">
+        <button id="btnCampusStatus" class="chip-status" title="View Campus Advisories">
+          <span class="status-dot"></span>
+          <span>Campus Open</span>
+        </button>
+        <button id="btnQuickShuttle" class="btn-action" title="Campus Shuttle Tracker">
+          <i class="fa-solid fa-bus"></i>
+          <span class="desktop-only">Shuttle</span>
+        </button>
+        <button id="btnHelpModal" class="btn-icon-round" title="Campus Guide & Help">
+          <i class="fa-regular fa-circle-question"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace (Sidebar + Map View) -->
+    <div class="workspace">
+      
+      <!-- Collapsible Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <!-- Sidebar Navigation Tabs -->
+        <div class="sidebar-tabs">
+          <button class="tab-btn active" data-tab="navTab">
+            <i class="fa-solid fa-route"></i>
+            <span>Directions</span>
+          </button>
+          <button class="tab-btn" data-tab="exploreTab">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>Explore</span>
+          </button>
+          <button class="tab-btn" data-tab="directoryTab">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Indoor Directory</span>
+          </button>
+          <button class="tab-btn" data-tab="alertsTab">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Advisories</span>
+          </button>
+        </div>
+
+        <!-- Sidebar Content Panels -->
+        <div class="tab-content-wrapper">
+          
+          <!-- TAB 1: NAVIGATION & ROUTING -->
+          <div class="tab-panel active" id="navTab">
+            
+            <div class="routing-inputs-card">
+              <!-- Route Mode Selector -->
+              <div class="mode-selector">
+                <button class="mode-btn active" id="modeWalkBtn" data-mode="walking">
+                  <i class="fa-solid fa-person-walking"></i>
+                  <span>Walking</span>
+                </button>
+                <button class="mode-btn" id="modeWheelchairBtn" data-mode="wheelchair">
+                  <i class="fa-solid fa-wheelchair"></i>
+                  <span>Accessible</span>
+                </button>
+              </div>
+
+              <!-- Route Origin / Destination Fields -->
+              <div class="waypoint-fields">
+                <div class="waypoint-row">
+                  <div class="waypoint-pin start-pin"><i class="fa-solid fa-circle-dot"></i></div>
+                  <div class="input-with-tools">
+                    <input type="text" id="routeStartInput" placeholder="Start location (or click map)" autocomplete="off">
+                    <button class="field-btn" id="btnMyCurrentLocation" title="Use My Location">
+                      <i class="fa-solid fa-crosshairs"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="swap-row">
+                  <button id="btnSwapLocations" class="btn-swap" title="Swap Start & Destination">
+                    <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                  </button>
+                </div>
+
+                <div class="waypoint-row">
+                  <div class="waypoint-pin dest-pin"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="input-with-tools">
+                    <input type="text" id="routeDestInput" placeholder="Destination (Building, Lab, Cafe)" autocomplete="off">
+                    <button class="field-btn" id="btnClearDest" title="Clear Destination">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Destination Chips -->
+              <div class="quick-dest-pills">
+                <span class="pills-label">Quick picks:</span>
+                <button class="quick-pill" data-target="b-lib"><i class="fa-solid fa-book-open"></i> Library</button>
+                <button class="quick-pill" data-target="b-caf"><i class="fa-solid fa-utensils"></i> Food Court</button>
+                <button class="quick-pill" data-target="b-eng"><i class="fa-solid fa-laptop-code"></i> Eng Block</button>
+                <button class="quick-pill" data-target="b-med"><i class="fa-solid fa-notes-medical"></i> Medical</button>
+                <button class="quick-pill" data-target="b-spo"><i class="fa-solid fa-dumbbell"></i> Sports</button>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="route-actions">
+                <button id="btnCalculateRoute" class="btn-primary">
+                  <i class="fa-solid fa-diamond-turn-right"></i>
+                  <span>Find Best Route</span>
+                </button>
+                <button id="btnClearRoute" class="btn-secondary hidden">
+                  <i class="fa-solid fa-trash-can"></i>
+                  <span>Clear</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Route Result Summary & Step by Step Guidance -->
+            <div id="routeResultsArea" class="route-results hidden">
+              <!-- Summary Card -->
+              <div class="route-summary-card">
+                <div class="summary-metric">
+                  <span class="metric-val" id="metricTime">--</span>
+                  <span class="metric-label">Estimated Time</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-metric">
+                  <span class="metric-val" id="metricDistance">--</span>
+                  <span class="metric-label">Total Distance</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-metric">
+                  <span class="metric-val" id="metricCalories">--</span>
+                  <span class="metric-label">Calories</span>
+                </div>
+              </div>
+
+              <!-- Live Simulation Control -->
+              <div class="simulation-banner">
+                <div class="sim-info">
+                  <i class="fa-solid fa-person-walking-arrow-right sim-pulse"></i>
+                  <div>
+                    <strong>Virtual Campus Walk</strong>
+                    <p>Simulate step-by-step navigation on map</p>
+                  </div>
+                </div>
+                <div class="sim-controls-right">
+                  <div class="speed-selector">
+                    <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="2">2x</button>
+                    <button class="speed-btn" data-speed="4">4x</button>
+                  </div>
+                  <button id="btnStartSimulation" class="btn-sim">
+                    <i class="fa-solid fa-play"></i> Start Walk
+                  </button>
+                </div>
+              </div>
+
+              <!-- Turn-by-Turn Instruction List -->
+              <div class="instructions-section">
+                <div class="section-header">
+                  <h3>Turn-by-Turn Guidance</h3>
+                  <span id="stepCountBadge" class="badge">0 steps</span>
+                </div>
+                <div id="instructionStepsList" class="steps-timeline">
+                  <!-- Injected via JavaScript -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TAB 2: EXPLORE CAMPUS BUILDINGS -->
+          <div class="tab-panel" id="exploreTab">
+            <div class="category-filter-bar" id="categoryFilterBar">
+              <button class="cat-pill active" data-category="All">All Places</button>
+              <button class="cat-pill" data-category="Academic">Academic</button>
+              <button class="cat-pill" data-category="Library">Library</button>
+              <button class="cat-pill" data-category="Food & Dining">Food</button>
+              <button class="cat-pill" data-category="Student Life">Student Life</button>
+              <button class="cat-pill" data-category="Sports & Recreation">Sports</button>
+              <button class="cat-pill" data-category="Medical & Health">Medical</button>
+              <button class="cat-pill" data-category="Hostels & Residence">Hostels</button>
+            </div>
+
+            <div id="buildingsList" class="buildings-grid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- TAB 3: INDOOR DIRECTORY & FLOORS -->
+          <div class="tab-panel" id="directoryTab">
+            <div class="indoor-selector-box">
+              <label for="buildingSelect">Select Building:</label>
+              <select id="buildingSelect" class="form-select">
+                <!-- Injected via JavaScript -->
+              </select>
+            </div>
+
+            <div id="buildingIndoorDetails" class="indoor-details-container">
+              <!-- Injected via JavaScript -->
+            </div>
+          </div>
+
+          <!-- TAB 4: ADVISORIES & SIMULATOR -->
+          <div class="tab-panel" id="alertsTab">
+            <div class="alerts-card-container">
+              <h3><i class="fa-solid fa-bullhorn"></i> Campus Announcements</h3>
+              <div id="alertsList" class="alerts-feed">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+
+            <div class="simulator-card">
+              <h3><i class="fa-solid fa-sliders"></i> Dynamic Rerouting Simulator</h3>
+              <p>Simulate unexpected pathway maintenance or construction closure to see Dijkstra instantly recalculate alternative accessible paths:</p>
+              
+              <div class="sim-toggle-row">
+                <div>
+                  <strong>East Athletic Walkway Pavers</strong>
+                  <p class="text-sm">Main path connecting East Quad to Sports Arena</p>
+                </div>
+                <button id="btnToggleClosure" class="btn-toggle-closure">
+                  <span class="status-indicator"></span>
+                  <span id="closureBtnText">Block Pathway</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="emergency-card">
+              <h3><i class="fa-solid fa-shield-heart"></i> Campus Emergency Contacts</h3>
+              <ul class="emergency-list">
+                <li><i class="fa-solid fa-truck-medical"></i> <span>24/7 Health Clinic:</span> <strong>Ext. 108 / +91-80-2345-0108</strong></li>
+                <li><i class="fa-solid fa-shield"></i> <span>Campus Security & SOS:</span> <strong>Ext. 100 / +91-80-2345-0100</strong></li>
+                <li><i class="fa-solid fa-wrench"></i> <span>Campus Facilities Helpdesk:</span> <strong>Ext. 112</strong></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Sidebar Toggle Floating Pill -->
+      <button id="sidebarToggle" class="sidebar-toggle-btn" title="Toggle Sidebar">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <!-- Interactive Map Area -->
+      <main class="map-viewport">
+        <div id="campusMap" class="campus-map"></div>
+
+        <!-- Floating Map Overlay Controls -->
+        <div class="map-floating-controls">
+          <button id="btnMapReset" class="map-control-btn" title="Reset Campus View">
+            <i class="fa-solid fa-arrows-to-dot"></i>
+          </button>
+          <button id="btnMapLocate" class="map-control-btn" title="Simulate My Location">
+            <i class="fa-solid fa-location-crosshairs"></i>
+          </button>
+          <button id="btnMapSatellite" class="map-control-btn" title="Toggle Map Style">
+            <i class="fa-solid fa-layer-group"></i>
+          </button>
+          <button id="btnToggleGraphOverlay" class="map-control-btn" title="Toggle Pathways & Walkways">
+            <i class="fa-solid fa-diagram-project"></i>
+          </button>
+          <button id="btnToggleAmenities" class="map-control-btn" title="Toggle Campus Amenities (ATM, Restrooms, First Aid)">
+            <i class="fa-solid fa-bell-concierge"></i>
+          </button>
+        </div>
+
+        <!-- Legend Card -->
+        <div class="map-legend">
+          <div class="legend-title"><i class="fa-solid fa-map"></i> Campus Legend</div>
+          <div class="legend-items">
+            <div class="legend-item"><span class="legend-badge leg-academic"></span> Academic</div>
+            <div class="legend-item"><span class="legend-badge leg-library"></span> Library</div>
+            <div class="legend-item"><span class="legend-badge leg-dining"></span> Dining</div>
+            <div class="legend-item"><span class="legend-badge leg-sports"></span> Sports</div>
+            <div class="legend-item"><span class="legend-badge leg-medical"></span> Medical</div>
+            <div class="legend-item"><span class="legend-badge leg-ramp"></span> Wheelchair Ramp</div>
+          </div>
+        </div>
+
+        <!-- Building Detail Slide-out Sheet (When clicked on map) -->
+        <div id="buildingDetailDrawer" class="building-drawer hidden">
+          <button id="btnCloseDrawer" class="btn-close-drawer"><i class="fa-solid fa-xmark"></i></button>
+          <div id="drawerContent">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Help & About Modal -->
+  <div id="helpModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-circle-question"></i> Welcome to UniNav Campus System</h2>
+        <button id="btnCloseModal" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <h4>How to Navigate:</h4>
+        <ol>
+          <li><strong>Search or Click:</strong> Use the global search bar or click directly on any campus building or entrance.</li>
+          <li><strong>Select Route:</strong> Pick your start location and destination in the <em>Directions</em> tab.</li>
+          <li><strong>Accessible Routing:</strong> Toggle <em>Accessible Mode</em> to automatically navigate through wheelchair ramps and avoid stairs.</li>
+          <li><strong>Virtual Walk:</strong> Click <em>Start Walk</em> to simulate step-by-step navigation with animated path progression.</li>
+          <li><strong>Indoor Navigation:</strong> Explore multi-floor building plans with room-by-room listings in the <em>Indoor Directory</em>.</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button id="btnCloseModalBtn" class="btn-primary">Got it, Let's Explore!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/api.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

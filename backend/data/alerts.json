@@ -1,0 +1,20 @@
+[
+  {
+    "id": "alert-1",
+    "title": "East Athletic Crossway Paver Work",
+    "description": "Routine paver stone maintenance near the sports arena walkway. Please follow pedestrian diversions via Central Quad.",
+    "severity": "info",
+    "affectedEdgeId": "e-29",
+    "active": false,
+    "createdAt": "2026-10-13T09:00:00Z"
+  },
+  {
+    "id": "alert-2",
+    "title": "Campus Shuttle Timetable Active",
+    "description": "Green shuttles run every 10 minutes between Main South Gate and North Transit Terminal.",
+    "severity": "notice",
+    "affectedEdgeId": null,
+    "active": true,
+    "createdAt": "2026-10-13T08:00:00Z"
+  }
+]

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  campus-nav:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: campus-navigation-app:latest
+    container_name: campus_navigation_app
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.2'
+          memory: 128M

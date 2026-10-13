@@ -1,0 +1,25 @@
+{
+  "name": "campus-navigation-backend",
+  "version": "1.0.0",
+  "description": "REST API and Dijkstra Pathfinding Engine for Campus Navigation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "campus",
+    "navigation",
+    "dijkstra",
+    "wayfinding",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "localtunnel": "^2.0.2"
+  }
+}

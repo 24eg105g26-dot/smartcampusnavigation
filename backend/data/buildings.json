@@ -1,0 +1,547 @@
+[
+  {
+    "id": "b-adm",
+    "code": "ADM",
+    "name": "Administrative Block",
+    "category": "Administrative",
+    "description": "Main campus administrative center, office of the Vice Chancellor, Registrar, Admissions, Student Finance, and Examination Cell.",
+    "coordinates": {
+      "lat": 12.9726,
+      "lng": 77.5948
+    },
+    "polygon": [
+      [12.97285, 77.59450],
+      [12.97285, 77.59515],
+      [12.97235, 77.59515],
+      [12.97235, 77.59450]
+    ],
+    "entrances": [
+      { "id": "n-adm-main", "name": "Main Entrance (South Facing)", "floor": 0, "accessible": true },
+      { "id": "n-adm-north", "name": "Staff Entrance (North)", "floor": 0, "accessible": false }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-adm-info", "name": "Campus Information & Help Desk", "type": "info" },
+          { "id": "r-adm-admissions", "name": "Admissions & Counseling Wing", "type": "office" },
+          { "id": "r-adm-finance", "name": "Student Accounts & Fee Counter", "type": "office" },
+          { "id": "r-adm-security", "name": "Campus Security & ID Office", "type": "service" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "First Floor",
+        "rooms": [
+          { "id": "r-adm-vc", "name": "Vice Chancellor's Secretariat", "type": "office" },
+          { "id": "r-adm-registrar", "name": "Registrar's Office", "type": "office" },
+          { "id": "r-adm-boardroom", "name": "Executive Board Room", "type": "conference" }
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Second Floor",
+        "rooms": [
+          { "id": "r-adm-exam", "name": "Examination & Evaluation Wing", "type": "office" },
+          { "id": "r-adm-hr", "name": "Human Resources & Faculty Affairs", "type": "office" }
+        ]
+      }
+    ],
+    "amenities": ["Wheelchair Ramp", "Elevator", "Restrooms", "ATM", "Wi-Fi", "Water Dispenser"],
+    "openingHours": "08:30 AM - 05:30 PM (Mon-Sat)",
+    "color": "#3B82F6",
+    "icon": "building-columns"
+  },
+  {
+    "id": "b-lib",
+    "code": "LIB",
+    "name": "Central Library & Media Commons",
+    "category": "Library",
+    "description": "3-story university central library with over 150,000 volumes, e-resource center, silent study carrels, and multimedia lab.",
+    "coordinates": {
+      "lat": 12.9734,
+      "lng": 77.5960
+    },
+    "polygon": [
+      [12.97370, 77.59565],
+      [12.97370, 77.59640],
+      [12.97310, 77.59640],
+      [12.97310, 77.59565]
+    ],
+    "entrances": [
+      { "id": "n-lib-main", "name": "Library Main Turnstile Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-lib-circ", "name": "Book Circulation & Return Desk", "type": "service" },
+          { "id": "r-lib-periodicals", "name": "Current Periodicals & Magazines", "type": "reading" },
+          { "id": "r-lib-coffee", "name": "Library Cafe & Lounge", "type": "food" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "First Floor",
+        "rooms": [
+          { "id": "r-lib-ref", "name": "Science & Tech Reference Stacks", "type": "stacks" },
+          { "id": "r-lib-digital", "name": "Digital Resource Lab (80 Terminals)", "type": "lab" },
+          { "id": "r-lib-gd1", "name": "Group Discussion Rooms (GD 1-4)", "type": "study" }
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Second Floor",
+        "rooms": [
+          { "id": "r-lib-silent", "name": "Silent Research Carrels", "type": "study" },
+          { "id": "r-lib-thesis", "name": "Archives & Rare Manuscripts", "type": "archive" }
+        ]
+      }
+    ],
+    "amenities": ["High-Speed Wi-Fi", "Elevator", "Restrooms", "Charging Ports", "Quiet Study Zones", "Printing Station"],
+    "openingHours": "07:30 AM - 11:00 PM (Everyday)",
+    "color": "#10B981",
+    "icon": "book-open"
+  },
+  {
+    "id": "b-eng",
+    "code": "ENG",
+    "name": "Engineering & Technology Block",
+    "category": "Academic",
+    "description": "Home to Computer Science, Artificial Intelligence, Electronics, and Mechanical Engineering departments.",
+    "coordinates": {
+      "lat": 12.9745,
+      "lng": 77.5946
+    },
+    "polygon": [
+      [12.97490, 77.59415],
+      [12.97490, 77.59505],
+      [12.97410, 77.59505],
+      [12.97410, 77.59415]
+    ],
+    "entrances": [
+      { "id": "n-eng-east", "name": "East Atrium Entrance", "floor": 0, "accessible": true },
+      { "id": "n-eng-west", "name": "West Workshop Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-eng-aud", "name": "Seminar Hall A (Tech Theater)", "type": "auditorium" },
+          { "id": "r-eng-iot", "name": "IoT & Embedded Systems Lab", "type": "lab" },
+          { "id": "r-eng-mech", "name": "Robotics & Rapid Prototyping Workshop", "type": "workshop" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "First Floor",
+        "rooms": [
+          { "id": "r-eng-cse1", "name": "CSE Software Lab 101", "type": "lab" },
+          { "id": "r-eng-ai", "name": "AI & Deep Learning High-Perf Cluster", "type": "lab" },
+          { "id": "r-eng-lh1", "name": "Lecture Halls 102 - 105", "type": "classroom" }
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Second Floor",
+        "rooms": [
+          { "id": "r-eng-hod", "name": "Head of Computer Science Office", "type": "office" },
+          { "id": "r-eng-cyber", "name": "Cybersecurity & Cloud Computing Lab", "type": "lab" },
+          { "id": "r-eng-faculty", "name": "Faculty Research Cabins", "type": "office" }
+        ]
+      }
+    ],
+    "amenities": ["Elevator", "Ramps", "Server Room Access", "Restrooms", "Water Purifier", "Vending Machine"],
+    "openingHours": "08:00 AM - 08:00 PM (Mon-Sat)",
+    "color": "#8B5CF6",
+    "icon": "laptop-code"
+  },
+  {
+    "id": "b-sci",
+    "code": "SCI",
+    "name": "Basic Sciences & Research Complex",
+    "category": "Academic",
+    "description": "Departments of Physics, Chemistry, Mathematics, and Life Sciences with cutting-edge analytical instrumentation.",
+    "coordinates": {
+      "lat": 12.9746,
+      "lng": 77.5965
+    },
+    "polygon": [
+      [12.97495, 77.59610],
+      [12.97495, 77.59695],
+      [12.97425, 77.59695],
+      [12.97425, 77.59610]
+    ],
+    "entrances": [
+      { "id": "n-sci-main", "name": "Main South Plaza Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-sci-chem", "name": "Advanced Chemistry Research Wing", "type": "lab" },
+          { "id": "r-sci-safety", "name": "Lab Safety & Chemical Storage", "type": "service" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "First Floor",
+        "rooms": [
+          { "id": "r-sci-phys", "name": "Optics & Quantum Physics Lab", "type": "lab" },
+          { "id": "r-sci-lecture", "name": "Science Lecture Theaters S1-S3", "type": "classroom" }
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Second Floor",
+        "rooms": [
+          { "id": "r-sci-math", "name": "Department of Pure & Applied Math", "type": "office" },
+          { "id": "r-sci-bio", "name": "Microbiology & Genetics Suite", "type": "lab" }
+        ]
+      }
+    ],
+    "amenities": ["Elevator", "Safety Showers", "Restrooms", "Purified Water"],
+    "openingHours": "08:30 AM - 07:00 PM (Mon-Sat)",
+    "color": "#06B6D4",
+    "icon": "flask"
+  },
+  {
+    "id": "b-aud",
+    "code": "AUD",
+    "name": "University Grand Auditorium",
+    "category": "Student Life",
+    "description": "1,200 seat acoustic auditorium for convocations, guest lectures, cultural fests, and international symposiums.",
+    "coordinates": {
+      "lat": 12.9723,
+      "lng": 77.5965
+    },
+    "polygon": [
+      [12.97265, 77.59615],
+      [12.97265, 77.59695],
+      [12.97195, 77.59695],
+      [12.97195, 77.59615]
+    ],
+    "entrances": [
+      { "id": "n-aud-main", "name": "Auditorium Grand Foyer (West)", "floor": 0, "accessible": true },
+      { "id": "n-aud-backstage", "name": "Backstage & Artist Entrance (East)", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-aud-main", "name": "Main Hall & Orchestra Seating", "type": "hall" },
+          { "id": "r-aud-green", "name": "VIP Green Rooms & Stage Access", "type": "service" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "Balcony Level",
+        "rooms": [
+          { "id": "r-aud-balcony", "name": "Balcony Seating Tier", "type": "hall" },
+          { "id": "r-aud-av", "name": "Audio-Visual & Sound Control Booth", "type": "service" }
+        ]
+      }
+    ],
+    "amenities": ["Wheelchair Ramps", "Acoustic Insulation", "Restrooms", "Emergency Exits"],
+    "openingHours": "Event Specific / 09:00 AM - 09:00 PM",
+    "color": "#F59E0B",
+    "icon": "music"
+  },
+  {
+    "id": "b-sac",
+    "code": "SAC",
+    "name": "Student Activity Center (SAC)",
+    "category": "Student Life",
+    "description": "Hub of student clubs, recreational games, music rooms, innovation incubator, and student council.",
+    "coordinates": {
+      "lat": 12.9733,
+      "lng": 77.5936
+    },
+    "polygon": [
+      [12.97360, 77.59325],
+      [12.97360, 77.59400],
+      [12.97300, 77.59400],
+      [12.97300, 77.59325]
+    ],
+    "entrances": [
+      { "id": "n-sac-east", "name": "Plaza Entrance (East)", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-sac-council", "name": "Student Council Headquarters", "type": "office" },
+          { "id": "r-sac-games", "name": "Indoor Games (Table Tennis, Foosball)", "type": "activity" },
+          { "id": "r-sac-store", "name": "Campus Co-op Store & Stationery", "type": "shop" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "First Floor",
+        "rooms": [
+          { "id": "r-sac-music", "name": "Music & Jamming Studio", "type": "activity" },
+          { "id": "r-sac-incubator", "name": "Student Startup Incubator Space", "type": "office" },
+          { "id": "r-sac-dance", "name": "Dance & Performing Arts Studio", "type": "activity" }
+        ]
+      }
+    ],
+    "amenities": ["Wi-Fi", "Restrooms", "Recreation Area", "Soundproof Studio"],
+    "openingHours": "07:00 AM - 10:00 PM (Daily)",
+    "color": "#EC4899",
+    "icon": "users"
+  },
+  {
+    "id": "b-caf",
+    "code": "CAF",
+    "name": "Central Food Court & Dining Hall",
+    "category": "Food & Dining",
+    "description": "Spacious two-tier dining hall with multi-cuisine counters, bakery, coffee bar, and shaded garden seating.",
+    "coordinates": {
+      "lat": 12.9721,
+      "lng": 77.5936
+    },
+    "polygon": [
+      [12.97240, 77.59325],
+      [12.97240, 77.59400],
+      [12.97180, 77.59400],
+      [12.97180, 77.59325]
+    ],
+    "entrances": [
+      { "id": "n-caf-north", "name": "Food Court North Gate", "floor": 0, "accessible": true },
+      { "id": "n-caf-east", "name": "Courtyard Gate (East)", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-caf-main", "name": "Main Meal & Buffet Counters", "type": "food" },
+          { "id": "r-caf-bakery", "name": "Campus Bakery & Coffee Barista", "type": "food" },
+          { "id": "r-caf-juice", "name": "Fresh Juice & Smoothies Corner", "type": "food" }
+        ]
+      },
+      {
+        "level": 1,
+        "name": "Upper Terrace",
+        "rooms": [
+          { "id": "r-caf-open", "name": "Open-air Garden Seating Area", "type": "food" },
+          { "id": "r-caf-private", "name": "Faculty & Guest Dining Lounge", "type": "dining" }
+        ]
+      }
+    ],
+    "amenities": ["Restrooms", "Hand Wash Stations", "Wheelchair Accessible", "Digital Ordering Kiosks"],
+    "openingHours": "07:00 AM - 10:30 PM (Daily)",
+    "color": "#EF4444",
+    "icon": "utensils"
+  },
+  {
+    "id": "b-med",
+    "code": "MED",
+    "name": "Campus Health & Medical Center",
+    "category": "Medical & Health",
+    "description": "24/7 medical facility with resident doctors, nursing staff, emergency triage, pharmacy, and dedicated ambulance bay.",
+    "coordinates": {
+      "lat": 12.9713,
+      "lng": 77.5943
+    },
+    "polygon": [
+      [12.97155, 77.59405],
+      [12.97155, 77.59465],
+      [12.97105, 77.59465],
+      [12.97105, 77.59405]
+    ],
+    "entrances": [
+      { "id": "n-med-main", "name": "Emergency & Clinic Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-med-triage", "name": "Emergency Triage & Observation Ward", "type": "medical" },
+          { "id": "r-med-doctor", "name": "Physician Consultation Rooms (1 & 2)", "type": "office" },
+          { "id": "r-med-pharm", "name": "Campus Pharmacy & Dispensary", "type": "service" }
+        ]
+      }
+    ],
+    "amenities": ["24/7 Service", "Wheelchair Ramp", "Ambulance Station", "Defibrillator / AED", "Pharmacy"],
+    "openingHours": "24 Hours (Open Daily)",
+    "color": "#DC2626",
+    "icon": "hospital"
+  },
+  {
+    "id": "b-spo",
+    "code": "SPO",
+    "name": "Sports Complex & Gymnasium",
+    "category": "Sports & Recreation",
+    "description": "Multi-sport arena with indoor basketball, badminton courts, Olympic swimming pool, weight training gym, and outdoor tracks.",
+    "coordinates": {
+      "lat": 12.9712,
+      "lng": 77.5962
+    },
+    "polygon": [
+      [12.97155, 77.59570],
+      [12.97155, 77.59670],
+      [12.97080, 77.59670],
+      [12.97080, 77.59570]
+    ],
+    "entrances": [
+      { "id": "n-spo-main", "name": "Sports Arena Main Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-spo-court", "name": "Indoor Basketball & Badminton Courts", "type": "sports" },
+          { "id": "r-spo-gym", "name": "Fitness Center & Cardio Floor", "type": "sports" },
+          { "id": "r-spo-locker", "name": "Locker Rooms & Shower Facilities", "type": "service" }
+        ]
+      }
+    ],
+    "amenities": ["Showers", "Lockers", "Drinking Water", "Equipment Rental", "First Aid Kit"],
+    "openingHours": "06:00 AM - 09:30 PM (Daily)",
+    "color": "#14B8A6",
+    "icon": "dumbbell"
+  },
+  {
+    "id": "b-hb1",
+    "code": "HB1",
+    "name": "Boys' Residence Hall 1 (Aravali)",
+    "category": "Hostels & Residence",
+    "description": "Undergraduate men's residential block with study halls, high-speed Wi-Fi, and 24/7 security warden desk.",
+    "coordinates": {
+      "lat": 12.9754,
+      "lng": 77.5935
+    },
+    "polygon": [
+      [12.97575, 77.59310],
+      [12.97575, 77.59390],
+      [12.97505, 77.59390],
+      [12.97505, 77.59310]
+    ],
+    "entrances": [
+      { "id": "n-hb1-gate", "name": "Aravali Hostel Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-hb1-warden", "name": "Hostel Warden Office & Check-in", "type": "office" },
+          { "id": "r-hb1-lounge", "name": "Common TV & Recreation Lounge", "type": "recreation" }
+        ]
+      }
+    ],
+    "amenities": ["24/7 Security", "Wi-Fi", "Laundry Room", "Water Purifier"],
+    "openingHours": "Residents 24/7 (Visitors: 09:00 AM - 08:00 PM)",
+    "color": "#6366F1",
+    "icon": "hotel"
+  },
+  {
+    "id": "b-hg1",
+    "code": "HG1",
+    "name": "Girls' Residence Hall 1 (Nilgiri)",
+    "category": "Hostels & Residence",
+    "description": "Undergraduate women's residential block with dedicated reading library, medical tie-up, and biometric access.",
+    "coordinates": {
+      "lat": 12.9754,
+      "lng": 77.5975
+    },
+    "polygon": [
+      [12.97575, 77.59710],
+      [12.97575, 77.59790],
+      [12.97505, 77.59790],
+      [12.97505, 77.59710]
+    ],
+    "entrances": [
+      { "id": "n-hg1-gate", "name": "Nilgiri Hostel Entrance", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Floor",
+        "rooms": [
+          { "id": "r-hg1-warden", "name": "Nilgiri Warden & Security Control", "type": "office" },
+          { "id": "r-hg1-study", "name": "Late Night Reading Hall", "type": "study" }
+        ]
+      }
+    ],
+    "amenities": ["Biometric Security", "Wi-Fi", "Laundry Room", "Water Purifier"],
+    "openingHours": "Residents 24/7 (Visitors: 09:00 AM - 08:00 PM)",
+    "color": "#A855F7",
+    "icon": "hotel"
+  },
+  {
+    "id": "b-gate-main",
+    "code": "GATE-M",
+    "name": "Main University Gate & Welcome Center",
+    "category": "Transit & Gates",
+    "description": "Primary campus entrance on Southern Boulevard, visitor check-in, taxi drop-off, and security booth.",
+    "coordinates": {
+      "lat": 12.9702,
+      "lng": 77.5950
+    },
+    "polygon": [
+      [12.97045, 77.59475],
+      [12.97045, 77.59525],
+      [12.96995, 77.59525],
+      [12.96995, 77.59475]
+    ],
+    "entrances": [
+      { "id": "n-gate-main", "name": "Main South Security Gate", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Level",
+        "rooms": [
+          { "id": "r-gate-security", "name": "Visitor Passes & Security Post", "type": "service" }
+        ]
+      }
+    ],
+    "amenities": ["Shuttle Stop", "Visitor Parking", "Security Desk", "Wheelchair Loan"],
+    "openingHours": "24 Hours (Open Daily)",
+    "color": "#64748B",
+    "icon": "shield-halved"
+  },
+  {
+    "id": "b-gate-north",
+    "code": "GATE-N",
+    "name": "North Gate & City Transit Terminal",
+    "category": "Transit & Gates",
+    "description": "Transit gateway connecting to metro bus routes, campus bicycle rental stand, and north vehicle parking.",
+    "coordinates": {
+      "lat": 12.9764,
+      "lng": 77.5954
+    },
+    "polygon": [
+      [12.97665, 77.59515],
+      [12.97665, 77.59565],
+      [12.97615, 77.59565],
+      [12.97615, 77.59515]
+    ],
+    "entrances": [
+      { "id": "n-gate-north", "name": "North Transit Gate", "floor": 0, "accessible": true }
+    ],
+    "floors": [
+      {
+        "level": 0,
+        "name": "Ground Level",
+        "rooms": [
+          { "id": "r-gate-north-bike", "name": "Smart Bike Rental Station", "type": "transit" }
+        ]
+      }
+    ],
+    "amenities": ["City Bus Bay", "Bicycle Sharing Stand", "North Parking"],
+    "openingHours": "06:00 AM - 11:00 PM (Daily)",
+    "color": "#64748B",
+    "icon": "bus"
+  }
+]
